@@ -1,5 +1,5 @@
-import PokeCard from "./PokeCard/PokeCard";
-import SearchBox from "./SearchBox/SearchBox";
+import PokeCard from "../PokeCard/PokeCard";
+import SearchBox from "../SearchBox/SearchBox";
 
 
 export default function PokeList(){
