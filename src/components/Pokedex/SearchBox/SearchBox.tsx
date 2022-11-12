@@ -1,6 +1,13 @@
-export default function SearchBox(){
+import "./SearchBox.css";
+
+const SearchBox = () => {
     return (
-        <p>SearchBox</p>
+        <input 
+            type="search" 
+            className="search" 
+            placeholder="Pokemon Search" 
+        />
     )
 }
 
+export default SearchBox;
