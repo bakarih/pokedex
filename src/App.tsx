@@ -32,11 +32,19 @@ class App extends React.Component {
     fetchAllpokemon()
   }
 
+  handleSearchInput(inputValue: any){
+    console.log(inputValue);
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Pokedex</h1>
-        <Pokedex data={poke}/>
+        <Pokedex 
+          data={poke}
+          onInputChange={this.handleSearchInput}
+        />
+          
       </div>
     )    
   }

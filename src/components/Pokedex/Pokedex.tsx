@@ -9,7 +9,7 @@ export default function Pokedex(props: any){
     return (
         <div className="pokedex-container">
             <div className="pokelist-container">
-                <SearchBox />
+                <SearchBox handleSearchBox={props.onInputChange}/>
                 <PokeList list={props.data}/>
             </div>
             <div className="pokesearchresult-container">
