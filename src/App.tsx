@@ -24,7 +24,6 @@ class App extends React.Component<any, any> {
     super(props);
 
     this.state = {
-      fetching: false,
       pokemonList: [],
     };
   }
