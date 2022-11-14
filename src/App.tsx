@@ -1,38 +1,39 @@
+// @ts-nocheck
 import React from 'react';
 import './App.css';
 import Pokedex from './components/Pokedex/Pokedex';
 
-let poke: any = [];
+async function fetchAllPokemon() {
+  try {
+    const allPokemonResponse = await fetch(
+      'https://pokeapi.co/api/v2/pokemon?limit=151'
+    );
 
-function fetchPokemonData(pokemen: any){
-  let url = pokemen.url;
-  fetch(url)
-  .then(async response => response.json())
-  .then(async function(pokeData: any){
-    try {
-      poke.push(pokeData);
-    } catch (error) {
-      console.error(error);
-    }  
-  })
+    if (!allPokemonResponse.ok) {
+      throw Error(`${response.status}: ${response.statusText}`);
+    }
+
+    return await allPokemonResponse.json();
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-function fetchAllpokemon(){
-  fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-  .then(async response => response.json())
-  .then(async function(allpokemon) {
-    allpokemon.results.forEach(async function(pokemon: any){
-      fetchPokemonData(pokemon);
-    });
-  })
-}
+class App extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
 
-class App extends React.Component {
-  componentDidMount(){
-    fetchAllpokemon()
+    this.state = {
+      pokemonList: [],
+    };
   }
 
-  handleSearchInput(inputValue: any){
+  async componentDidMount() {
+    const pokemonList = await fetchAllPokemon();
+    this.setState({ pokemonList });
+  }
+
+  handleSearchInput(inputValue: any) {
     console.log(inputValue);
   }
 
@@ -40,15 +41,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Pokedex</h1>
-        <Pokedex 
-          data={poke}
+        <Pokedex
+          data={this.state.pokemonList}
           onInputChange={this.handleSearchInput}
         />
-          
       </div>
-    )    
+    );
   }
 }
-    
 
 export default App;
