@@ -10,7 +10,9 @@ async function fetchAllPokemon() {
     );
 
     if (!allPokemonResponse.ok) {
-      throw Error(`${response.status}: ${response.statusText}`);
+      throw Error(
+        `${allPokemonResponse.status}: ${allPokemonResponse.statusText}`
+      );
     }
 
     return await allPokemonResponse.json();

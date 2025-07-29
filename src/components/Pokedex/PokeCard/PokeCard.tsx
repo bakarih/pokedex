@@ -12,7 +12,9 @@ function useSinglePokemonDetails(pokemon: any) {
           const pokemonDetailsResponse = await fetch(pokemon.url);
 
           if (!pokemonDetailsResponse.ok) {
-            throw Error(`${response.status}: ${response.statusText}`);
+            throw Error(
+              `${pokemonDetailsResponse.status}: ${pokemonDetailsResponse.statusText}`
+            );
           }
 
           setDetails(await pokemonDetailsResponse.json());
